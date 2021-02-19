@@ -64,9 +64,28 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         let posterPath = movie["poster_path"] as! String
         let posterURL = URL(string: baseURL + posterPath)
         
-        cell.posterView.af_setImage(withURL: posterURL!)
+        cell.posterView.af.setImage(withURL: posterURL!)
         
         return cell
+    }
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        
+        // Find the selected movie
+        let cell = sender as! UICollectionViewCell
+        let indexPath = collectionView.indexPath(for: cell)!
+        let movie = movies[indexPath.item]
+        
+        // Pass the selected movie to the grid details view controller
+        let gridViewController = segue.destination as! GridDetailsViewController
+        gridViewController.movie = movie
+        
+        
     }
     
     

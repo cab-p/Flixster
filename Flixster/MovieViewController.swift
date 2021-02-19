@@ -65,7 +65,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITabBarDele
         let posterPath = movie["poster_path"] as! String
         let posterURL = URL(string: baseURL + posterPath)
         
-        cell.posterView.af_setImage(withURL: posterURL!)
+        cell.posterView.af.setImage(withURL: posterURL!)
         
         return cell
         
